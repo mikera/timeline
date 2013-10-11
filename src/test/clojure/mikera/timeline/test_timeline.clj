@@ -1,6 +1,7 @@
 (ns mikera.timeline.test-timeline
   (:use clojure.test)
   (:use mikera.timeline)
+  (:use mikera.timeline.utils)
   (:use [mikera.cljutils error]))
 
 (deftest basic-lookup

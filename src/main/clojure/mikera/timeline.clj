@@ -1,24 +1,13 @@
 (ns mikera.timeline
   (:use [mikera.cljutils error])
-  (:use [mikera.timeline protocols impl])
+  (:use [mikera.timeline utils protocols impl])
   (:require [clj-time.core :as time])
-  (:import [org.joda.time Instant DateTimeUtils])
-  (:require [clojure.core.rrb-vector :as fv])
-  (:import [org.joda.time.base AbstractInstant]))
+  (:require [clojure.core.rrb-vector :as fv]))
 
-(defn long-time
-  "Returns the long value of a timestamp. time may be any Joda instant, or omitted (returns the current time)"
-  (^long []
-    (DateTimeUtils/currentTimeMillis))
-  (^long [time]
-    (cond 
-      (number? time) (long time)
-      (instance? Instant time) (.getMillis ^Instant time)
-      (instance? AbstractInstant time) (.getMillis (.toInstant ^AbstractInstant time))
-      :else (error "Time format not recognised: " time))))
 
 (defn timeline 
-  "Constructs a new timeline object"
+  "Constructs a new timeline object. events may be timestamp/value pairs or a map of timestamps to values.
+   Events do not need to be in sorted order."
   ([] 
     (->Timeline (long-time) [] []))
   ([events]
