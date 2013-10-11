@@ -3,6 +3,11 @@
   (:import [org.joda.time Instant DateTimeUtils])
   (:import [org.joda.time.base AbstractInstant]))
 
+(defn now 
+  "Returns the current time, as a long number of milliseconds since the Java / UNIX epoch"
+  (^long []
+    (DateTimeUtils/currentTimeMillis)))
+
 (defn long-time
   "Returns the value of a timestamp, as a long number of milliseconds since the Java / UNIX epoch 
    time may be any Joda instant, or omitted (returns the current time)"

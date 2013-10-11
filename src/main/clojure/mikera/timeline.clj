@@ -33,3 +33,10 @@
 
 (defn event-count 
   ([tl] (ep/event-count tl)))
+
+(defn log
+  "Adds value to a timeline. If time is omitted, uses the current system time."
+  ([tl value]
+    (log tl (now) value))
+  ([tl time value]
+    (ep/add-event tl time value)))
