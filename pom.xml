@@ -1,31 +1,54 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>net.mikera</groupId>
-  <artifactId>timeline</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Timeline</name>
-  <description>Adding the time dimension to Clojure data</description>
-  <dependencies>
-  	<dependency>
-  		<groupId>clj-time</groupId>
-  		<artifactId>clj-time</artifactId>
-  		<version>0.6.0</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.clojure</groupId>
-  		<artifactId>clojure</artifactId>
-  		<version>1.4.0</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>net.mikera</groupId>
-  		<artifactId>clojure-utils</artifactId>
-  		<version>0.4.0</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>net.mikera</groupId>
-  		<artifactId>cljunit</artifactId>
-  		<version>0.3.0</version>
-  		<scope>test</scope>
-  	</dependency>
-  </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>timeline</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Timeline</name>
+	<description>Adding the time dimension to Clojure data</description>
+	
+	<parent>
+		<groupId>net.mikera</groupId>
+		<artifactId>clojure-pom</artifactId>
+		<version>0.0.4</version>
+	</parent>
+
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License (LGPL)</name>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+		</license>
+	</licenses>
+
+	<repositories>
+		<repository>
+			<id>clojars.org</id>
+			<url>http://clojars.org/repo</url>
+		</repository>
+	</repositories>
+	
+	<dependencies>
+		<dependency>
+			<groupId>clj-time</groupId>
+			<artifactId>clj-time</artifactId>
+			<version>0.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.clojure</groupId>
+			<artifactId>clojure</artifactId>
+			<version>1.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.mikera</groupId>
+			<artifactId>clojure-utils</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.mikera</groupId>
+			<artifactId>cljunit</artifactId>
+			<version>0.3.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
 </project>
