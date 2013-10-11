@@ -3,7 +3,6 @@
   (:import [mikera.timeline ISeekIndex])
   (:import [org.joda.time Instant DateTimeUtils]))
 
-
 (deftype Timeline
   [^long base
    offsets
@@ -16,7 +15,7 @@
         (long 
           (loop [i (long 0) j n]
             (if (>= i j) 
-              (if (== i 0) -1 (dec i))
+              (dec i)
               (let [mi (long (quot (+ i j) 2))
                     moff (long (nth offsets mi))]
                 (if (>= offset moff)
@@ -36,5 +35,11 @@
     (seek-index [tl time]
       (let [time (long time)
             offset (- time base)
-            ix (.seek tl time)]
-        (if (>= ix 0) ix nil))))
+       ix (.seek tl offset)]
+        (if (>= ix 0) ix nil)))
+    
+    (event-value [tl index]
+      (nth values index))
+    
+    (event-time [tl index]
+      (nth offsets index)))
