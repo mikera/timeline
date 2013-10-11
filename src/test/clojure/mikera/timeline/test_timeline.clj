@@ -23,5 +23,11 @@
 	    (is (= :bar (at t 55)))
       (is (== 3 (event-count t))))))
 
+(deftest logging
+  (testing "log to empty timeline"
+     (let [t (timeline)
+           lt (log t 0 :foo)]
+       (is (== 1 (event-count lt))))))
+
 
 

@@ -58,6 +58,6 @@
       (let [offset (- (long time) base)
             ix (inc (.seek tl offset))
             n (count values)]
-        (->Timeline base 
+        (Timeline. base 
                     (fv/catvec (conj (fv/subvec offsets 0 ix) offset) (fv/subvec offsets ix n))
                     (fv/catvec (conj (fv/subvec values 0 ix) value)   (fv/subvec values ix n))))))
