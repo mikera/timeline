@@ -8,7 +8,8 @@
   (testing "empty timeline"
     (let [t (timeline)]
      (is (nil? (seek t 0)))
-     (is (nil? (seek t (+ (long-time) 1000))))))
+     (is (nil? (seek t (+ (long-time) 1000))))
+     (is (== 0 (event-count t)))))
   (testing "single value" 
 	  (let [t (timeline {10 :foo})]
 	    (is (nil? (at t 0)))
@@ -19,7 +20,8 @@
 	    (is (nil? (at t 0)))
 	    (is (= :foo (at t 10)))
 	    (is (= :baz (at t 35)))
-	    (is (= :bar (at t 55))))))
+	    (is (= :bar (at t 55)))
+      (is (== 3 (event-count t))))))
 
 
 

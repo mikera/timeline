@@ -14,4 +14,7 @@
     "Gets the value from the event on timeline at the specified index. Index must be valid")
   (event-time
     [tl index]
-    "Gets the time from the event on timeline at the specified index. Index must be valid"))
+    "Gets the time from the event on timeline at the specified index. Index must be valid")
+  (event-count
+    [tl]
+    "Returns the total number of distinct events on the timeline"))

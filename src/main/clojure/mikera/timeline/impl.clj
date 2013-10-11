@@ -42,4 +42,7 @@
       (nth values index))
     
     (event-time [tl index]
-      (nth offsets index)))
+      (nth offsets index))
+    
+    (event-count [tl]
+      (count values)))
