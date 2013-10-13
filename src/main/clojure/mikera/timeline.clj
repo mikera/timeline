@@ -16,7 +16,7 @@
       (let [events (map (fn [[t v]] [(long-time t) v]) events)
             base-time (long (first (first events)))
             events (sort-by first events)]
-       (imp/->Timeline base-time (fv/vec (map #(- (long (first %)) base-time) events)) (fv/vec (map second events)))))))
+       (imp/->Timeline base-time (fv/vec (map first events)) (fv/vec (map second events)))))))
 
 (defn seek 
   "Returns the index of the last event before the specified time, or nil if no such event exists"

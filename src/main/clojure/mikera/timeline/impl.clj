@@ -6,26 +6,26 @@
 
 (deftype Timeline
   [^long base
-   offsets
+   times
    values]
   
   ISeekIndex
-    (seek [tl offset]
-      (let [offset (long offset)
+    (seek [tl time]
+      (let [time (long time)
             n (long (count values))]
         (long 
           (loop [i (long 0) j n]
             (if (>= i j) 
               (dec i)
               (let [mi (long (quot (+ i j) 2))
-                    moff (long (nth offsets mi))]
-                (if (>= offset moff)
+                    moff (long (nth times mi))]
+                (if (>= time moff)
                   (recur (inc mi) j)
                   (recur i mi)))))))) 
   
   clojure.lang.Seqable
     (seq [tl]
-      (map vector (map #(Instant. (+ base (long %))) offsets) values))  
+      (map vector (map #(Instant. (long %)) times) values))  
   
   Object
     (toString [tl]
@@ -41,23 +41,21 @@
     
     (seek-index [tl time]
       (let [time (long time)
-            offset (- time base)
-       ix (.seek tl offset)]
+       ix (.seek tl time)]
         (if (>= ix 0) ix nil)))
     
     (event-value [tl index]
       (nth values index))
     
     (event-time [tl index]
-      (nth offsets index))
+      (nth times index))
     
     (event-count [tl]
       (count values))
     
     (add-event [tl time value]
-      (let [offset (- (long time) base)
-            ix (inc (.seek tl offset))
+      (let [ix (inc (.seek tl time))
             n (count values)]
         (Timeline. base 
-                    (fv/catvec (conj (fv/subvec offsets 0 ix) offset) (fv/subvec offsets ix n))
+                    (fv/catvec (conj (fv/subvec times 0 ix) time) (fv/subvec times ix n))
                     (fv/catvec (conj (fv/subvec values 0 ix) value)   (fv/subvec values ix n))))))
