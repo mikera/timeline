@@ -27,7 +27,11 @@
   (testing "log to empty timeline"
      (let [t (timeline)
            lt (log t 0 :foo)]
-       (is (== 1 (event-count lt))))))
+       (is (== 1 (event-count lt)))))
+  (testing "log multiple values"
+           (let [t (timeline)
+                 tl (log t (long-time) 1 2 3)]
+             (is (= [1 2 3] (map second tl))))))
 
 
 

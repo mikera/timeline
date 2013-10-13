@@ -39,4 +39,19 @@
   ([tl value]
     (log tl (now) value))
   ([tl time value]
-    (ep/add-event tl time value)))
+    (let [time (long-time time)] 
+      (ep/add-event tl time value)))
+  ([tl time value & more-values]
+    (let [time (long-time time)] 
+      (loop [tl (ep/add-event tl time value)
+             vs more-values]
+        (if (empty? vs)
+          tl
+          (recur (ep/add-event tl time (first vs)) (next vs)))))))
+;
+;(defn slice
+;  "Takes a slice of a timeline from start to end."
+;  ([tl start end]
+;    (ep/slice tl 
+;              (long-time start)
+;              (long-time end))))
