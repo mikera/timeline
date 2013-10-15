@@ -48,10 +48,7 @@
         (if (empty? vs)
           tl
           (recur (ep/add-event tl time (first vs)) (next vs)))))))
-;
-;(defn slice
-;  "Takes a slice of a timeline from start to end."
-;  ([tl start end]
+
 ;    (ep/slice tl 
 ;              (long-time start)
 ;              (long-time end))))
