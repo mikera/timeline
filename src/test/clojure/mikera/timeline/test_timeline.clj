@@ -8,7 +8,7 @@
   (testing "empty timeline"
     (let [t (timeline)]
      (is (nil? (seek t 0)))
-     (is (nil? (seek t (+ (long-time) 1000))))
+     (is (nil? (seek t (+ (now) 1000))))
      (is (== 0 (event-count t)))))
   (testing "single value" 
 	  (let [t (timeline {10 :foo})]
@@ -30,7 +30,7 @@
        (is (== 1 (event-count lt)))))
   (testing "log multiple values"
            (let [t (timeline)
-                 tl (log t (long-time) 1 2 3)]
+                 tl (log t (now) 1 2 3)]
              (is (= [1 2 3] (map second tl))))))
 
 

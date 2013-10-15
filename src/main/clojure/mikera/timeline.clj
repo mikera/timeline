@@ -5,11 +5,14 @@
   (:require [clj-time.core :as time])
   (:require [clojure.core.rrb-vector :as fv]))
 
+(set! *warn-on-reflection* true)
+(set! *unchecked-math* true)
+
 (defn timeline 
   "Constructs a new timeline object. events may be timestamp/value pairs or a map of timestamps to values.
    Events do not need to be in sorted order."
   ([] 
-    (imp/->Timeline (long-time) [] []))
+    (imp/->Timeline (now) [] []))
   ([events]
     (if (empty? events)
       (timeline)
