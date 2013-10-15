@@ -15,6 +15,9 @@
   (^long []
     (DateTimeUtils/currentTimeMillis)))
 
+(defn parse-datetime ^long [^String s]
+  (.parseMillis time-format s))
+
 (defn long-time
   "Returns the value of a timestamp, as a long number of milliseconds since the Java / UNIX epoch 
    time may be any Joda instant, or an ISO8601 DateTime string"
@@ -23,5 +26,5 @@
       (number? time) (long time)
       (instance? Instant time) (.getMillis ^Instant time)
       (instance? AbstractInstant time) (.getMillis (.toInstant ^AbstractInstant time))
-      (string? time) (long-time (.parseDateTime time-format ^String time)) 
+      (string? time) (parse-datetime time) 
       :else (error "Time format not recognised: " time))))

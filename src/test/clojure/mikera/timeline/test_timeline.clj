@@ -33,5 +33,9 @@
                  tl (log t (now) 1 2 3)]
              (is (= [1 2 3] (map second tl))))))
 
+(deftest parsing
+  (testing "ISO8601 string"
+    (is (== 0 (long-time "1970-01-01T00:00:00.0Z")))))
+
 
 
