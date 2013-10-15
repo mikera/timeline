@@ -14,7 +14,7 @@ Often it is helpful to see how values change over time.
  - Accepts anything as values
  - View of timelines as a sequence of changes ("events")
  - Builds on **RRB-Trees** (https://github.com/clojure/core.rrb-vector) to enable efficient merging, slicing and concatenation of timelines
- - Builds on **clj-time / Joda time* for a decent immutable timestamp handling API
+ - Builds on **clj-time / Joda time** for a decent immutable timestamp handling API
 
 ### Getting Started
 
@@ -23,8 +23,7 @@ To use Timeline, you can get the latest released version from Clojars:
  - https://clojars.org/net.mikera/timeline
  
 ### Examples
- 
-```clojure
 
+Some example usage is provided in the following test namespace:
 
-```
+ - https://github.com/mikera/timeline/blob/develop/src/test/clojure/mikera/timeline/examples.clj
