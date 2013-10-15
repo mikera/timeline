@@ -11,3 +11,6 @@
 (dotimes [i 10]
   (Thread/sleep (rand-int 100))
   (swap! event-log log (str "Event: i")))
+
+;; list all the timestamped events
+(seq @event-log)
