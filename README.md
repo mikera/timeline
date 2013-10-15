@@ -27,3 +27,4 @@ To use Timeline, you can get the latest released version from Clojars:
 Some example usage is provided in the following test namespace:
 
  - https://github.com/mikera/timeline/blob/develop/src/test/clojure/mikera/timeline/examples.clj
+ 
