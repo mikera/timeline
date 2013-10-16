@@ -28,10 +28,16 @@
      (let [t (timeline)
            lt (log t 0 :foo)]
        (is (== 1 (event-count lt)))))
-  (testing "log multiple values"
+  (testing "log multiple values at once"
            (let [t (timeline)
                  tl (log t (now) 1 2 3)]
-             (is (= [1 2 3] (map second tl))))))
+             (is (= [1 2 3] (map second tl)))))
+  (testing "log in middle of timeline"
+           (let [tl (timeline)
+                 tl (log tl 0 1)
+                 tl (log tl 10 2)
+                 tl (log tl 0 3)]
+             (is (= [1 3 2] (map second tl))))))
 
 (deftest parsing
   (testing "ISO8601 string"
