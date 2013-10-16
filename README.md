@@ -24,7 +24,21 @@ To use Timeline, you can get the latest released version from Clojars:
  
 ### Examples
 
-Some example usage is provided in the following test namespace:
+```clojure
+(let [time-now (now)
+      t (timeline) 
+      t (log t time-now "Now")
+      t (log t (+ time-now 1000) "One second later")
+      t (log t (- time-now 1000) "One second before")]
+  (seq t))
+  
+=> ([#<Instant 2013-10-16T02:16:46.879Z> "One second before"] 
+    [#<Instant 2013-10-16T02:16:47.879Z> "Now"] 
+    [#<Instant 2013-10-16T02:16:48.879Z> "One second later"])
+``` 
+
+Some more example usage is provided in the following test namespaces:
 
  - https://github.com/mikera/timeline/blob/develop/src/test/clojure/mikera/timeline/examples.clj
+ - https://github.com/mikera/timeline/blob/develop/src/test/clojure/mikera/timeline/test_timeline.clj
  
