@@ -5,8 +5,7 @@
   (:import [org.joda.time Instant DateTimeUtils]))
 
 (deftype Timeline
-  [^long base
-   times
+  [times
    values]
   
   ISeekIndex
@@ -56,6 +55,5 @@
     (add-event [tl time value]
       (let [ix (inc (.seek tl time))
             n (count values)]
-        (Timeline. base 
-                    (fv/catvec (conj (fv/subvec times 0 ix) time) (fv/subvec times ix n))
-                    (fv/catvec (conj (fv/subvec values 0 ix) value)   (fv/subvec values ix n))))))
+        (Timeline. (fv/catvec (conj (fv/subvec times 0 ix) time) (fv/subvec times ix n))
+                   (fv/catvec (conj (fv/subvec values 0 ix) value)   (fv/subvec values ix n))))))

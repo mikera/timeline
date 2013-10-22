@@ -12,14 +12,14 @@
   "Constructs a new timeline object. events may be a sequence of timestamp/value pairs or a map of timestamps to values.
    Events do not need to be in sorted order."
   ([] 
-    (imp/->Timeline (now) [] []))
+    (imp/->Timeline [] []))
   ([events]
     (if (empty? events)
       (timeline)
       (let [events (map (fn [[t v]] [(long-time t) v]) events)
-            base-time (long (first (first events)))
+            ; base-time (long (first (first events)))
             events (sort-by first events)]
-       (imp/->Timeline base-time (fv/vec (map first events)) (fv/vec (map second events)))))))
+       (imp/->Timeline (fv/vec (map first events)) (fv/vec (map second events)))))))
 
 (defn seek 
   "Returns the index of the last event before the specified time, or nil if no such event exists"
