@@ -11,6 +11,7 @@ Often it is helpful to see how values change over time.
 
 ### Features:
 
+ - 100% immutable, persistent data structure
  - Accepts anything as values
  - View of timelines as a sequence of changes ("events")
  - Ability to look up the most recently set value for any timeline
