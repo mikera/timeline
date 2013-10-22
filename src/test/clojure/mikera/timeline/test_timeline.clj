@@ -40,6 +40,14 @@
                  tl (log tl 0 3)]
              (is (= [1 3 2] (map second tl))))))
 
+(deftest test-start-end
+  (let [t1 (timeline)
+        t2 (log (log t1 10 1) 20 2)]
+    (is (nil? (start t1)))
+    (is (nil? (end t1)))
+    (is (= 10 (start t2)))
+    (is (= 20 (end t2)))))
+
 (deftest test-log-changes
   (let [tl (timeline)
         tl (log-change tl 0 1)
