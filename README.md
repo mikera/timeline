@@ -1,4 +1,44 @@
 timeline
 ========
 
-Adding the time dimension to Clojure data
+Adds the time dimension to Clojure data.
+
+A timeline is a chronologically tagged sequence of values, stored as an immutable persistent data structure.
+
+### Motivation
+
+Often it is helpful to see how values change over time.
+
+### Features:
+
+ - Accepts anything as values
+ - View of timelines as a sequence of changes ("events")
+ - Builds on **RRB-Trees** (https://github.com/clojure/core.rrb-vector) to enable efficient merging, slicing and concatenation of timelines
+ - Builds on **clj-time / Joda time** for a decent immutable timestamp handling API
+
+### Getting Started
+
+To use Timeline, you can get the latest released version from Clojars:
+
+ - https://clojars.org/net.mikera/timeline
+ 
+### Examples
+
+```clojure
+(let [time-now (now)
+      t (timeline) 
+      t (log t time-now "Now")
+      t (log t (+ time-now 1000) "One second later")
+      t (log t (- time-now 1000) "One second before")]
+  (seq t))
+  
+=> ([#<Instant 2013-10-16T02:16:46.879Z> "One second before"] 
+    [#<Instant 2013-10-16T02:16:47.879Z> "Now"] 
+    [#<Instant 2013-10-16T02:16:48.879Z> "One second later"])
+``` 
+
+Some more example usage is provided in the following test namespaces:
+
+ - https://github.com/mikera/timeline/blob/develop/src/test/clojure/mikera/timeline/examples.clj
+ - https://github.com/mikera/timeline/blob/develop/src/test/clojure/mikera/timeline/test_timeline.clj
+ 
