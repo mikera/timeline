@@ -53,7 +53,8 @@
           (recur (ep/add-event tl time (first vs)) (next vs)))))))
 
 (defn log-change
-  "Logs a value to a timeline if and only if the value is a change to the previous value"
+  "Logs a value to a timeline if and only if the value is a change to the previous value. This has the effect of
+   collapsing identically values events into the first such event."
   ([tl value]
     (log-change tl (now) value))
   ([tl time value]

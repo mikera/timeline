@@ -45,7 +45,7 @@
         tl (log-change tl 0 1)
         tl (log-change tl 10 1)
         tl (log-change tl 5 1)
-        tl (log-change tl 1 2)]
+        tl (log-change tl 1.1 2)]
     (is (= 2 (at tl 1)))
     (is (= [1 2] (map second tl)))))
 
