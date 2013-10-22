@@ -32,7 +32,11 @@
   ([tl time]
     (if-let [ix (seek tl time)]
       (ep/event-value tl ix)
-      nil)))
+      nil))
+  ([tl time default]
+    (if-let [ix (seek tl time)]
+      (ep/event-value tl ix)
+      default)))
 
 (defn start
   "Returns the time of the first event in the timeline, or nil if there are no events."
