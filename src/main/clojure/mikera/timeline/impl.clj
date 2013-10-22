@@ -4,6 +4,9 @@
   (:import [mikera.timeline ISeekIndex])
   (:import [org.joda.time Instant DateTimeUtils]))
 
+(deftype TimelineEntry 
+  [^Long time value])
+
 (deftype Timeline
   [times
    values]
