@@ -13,6 +13,8 @@ Often it is helpful to see how values change over time.
 
  - Accepts anything as values
  - View of timelines as a sequence of changes ("events")
+ - Ability to look up the most recently set value for any timeline
+ - Each event is a [time value] pair
  - Builds on **RRB-Trees** (https://github.com/clojure/core.rrb-vector) to enable efficient merging, slicing and concatenation of timelines
  - Builds on **clj-time / Joda time** for a decent immutable timestamp handling API
 
