@@ -48,14 +48,23 @@
     (is (= 10 (start t2)))
     (is (= 20 (end t2)))))
 
-(deftest test-log-changes
+(deftest test-start-end
+  (let [t1 (timeline)
+        t2 (log (log t1 10 1) 20 2)]
+    (is (nil? (start t1)))
+    (is (nil? (end t1)))
+    (is (= 10 (start t2)))
+    (is (= 20 (end t2)))))
+
+(deftest test-resample
   (let [tl (timeline)
-        tl (log-change tl 0 1)
-        tl (log-change tl 10 1)
-        tl (log-change tl 5 1)
-        tl (log-change tl 1.1 2)]
-    (is (= 2 (at tl 1)))
-    (is (= [1 2] (map second tl)))))
+        tl (log tl 1000 1)
+        tl (log tl 1100 2)
+        tl (log tl 1500 3)
+        tl (log tl 2000 4)]
+    (is (= 20 (event-count (resample tl :events 20))))
+    (is (= 10 (event-count (resample tl :interval 100))))
+    (is (= 11 (event-count (resample tl :interval 100 :add-last true))))))
 
 (deftest parsing
   (testing "ISO8601 string"

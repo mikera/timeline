@@ -82,6 +82,26 @@
     (let [time (long-time time)]
       (reduce #(log-change tl time %) (log-change tl time value) more-values)))) 
 
+(defn resample 
+  "Resamples a timeline, logging all values at regular intervals 
+
+   Must provide either desired number of events or the sampling interval."
+  ([timeline & {:keys [start end interval events add-last]}]
+    (let [t0 (long (if start (long-time start) (long (mikera.timeline/start timeline))))
+          tn (long (if end (long-time end) (mikera.timeline/end timeline)))
+          interval (double (if interval 
+                            (double interval)
+                            (/ (- tn t0) (double events))))
+          events (double (if events (double events) (/ (- tn t0) (double interval))))]
+      (loop [tl (mikera.timeline/timeline) i (long 0)]
+        (if (< i events)
+          (let [ti (+ t0 (* interval i))]
+            (recur (log tl ti (at timeline ti))
+                  (inc i)))
+          (if add-last ;; append the last value from the resampling
+            (log tl tn (at timeline tn))
+            tl))))))
+
 ;    (ep/slice tl 
 ;              (long-time start)
 ;              (long-time end))))
