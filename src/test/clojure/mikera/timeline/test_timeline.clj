@@ -9,8 +9,8 @@
     (let [t (timeline)]
      (is (nil? (seek t 0)))
      (is (nil? (seek t (+ (now) 1000))))
-     (is (== 0 (event-count t)))
-     (is (== 0 (event-count (log-change t 0 nil))))))
+     (is (== 0 (count t)))
+     (is (== 0 (count (log-change t 0 nil))))))
   (testing "single value" 
 	  (let [t (timeline {10 :foo})]
 	    (is (nil? (at t 0)))
@@ -22,13 +22,13 @@
 	    (is (= :foo (at t 10)))
 	    (is (= :baz (at t 35)))
 	    (is (= :bar (at t 55)))
-      (is (== 3 (event-count t))))))
+      (is (== 3 (count t))))))
 
 (deftest logging
   (testing "log to empty timeline"
      (let [t (timeline)
            lt (log t 0 :foo)]
-       (is (== 1 (event-count lt)))))
+       (is (== 1 (count lt)))))
   (testing "log multiple values at once"
            (let [t (timeline)
                  tl (log t (now) 1 2 3)]
@@ -62,9 +62,9 @@
         tl (log tl 1100 2)
         tl (log tl 1500 3)
         tl (log tl 2000 4)]
-    (is (= 20 (event-count (resample tl :events 20))))
-    (is (= 10 (event-count (resample tl :interval 100))))
-    (is (= 11 (event-count (resample tl :interval 100 :add-last true))))))
+    (is (= 20 (count (resample tl :events 20))))
+    (is (= 10 (count (resample tl :interval 100))))
+    (is (= 11 (count (resample tl :interval 100 :add-last true))))))
 
 (deftest test-slice
   (let [tl (timeline)

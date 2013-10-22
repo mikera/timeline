@@ -22,6 +22,19 @@
                   (recur (inc mi) j)
                   (recur i mi)))))))) 
   
+  clojure.lang.Counted
+    (count [tl]
+      (int (count values))) 
+  
+  clojure.lang.Indexed
+    (nth [tl i]
+      [(Instant. (nth times i)) (nth values i)])
+    
+    (nth [tl i default]
+      (if (and (>= i 0) (< i (count values)))
+        [(Instant. (nth times i)) (nth values i)]
+        default))
+  
   clojure.lang.Seqable
     (seq [tl]
       (seq (map vector (map #(Instant. (long %)) times) values)))  
@@ -48,10 +61,7 @@
     
     (event-time [tl index]
       (nth times index))
-    
-    (event-count [tl]
-      (count values))
-    
+        
     (slice-indexes
       [tl start-index end-index]
       (Timeline. (fv/subvec times start-index end-index)

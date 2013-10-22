@@ -41,21 +41,17 @@
 (defn start
   "Returns the time of the first event in the timeline, or nil if there are no events."
   ([timeline]
-    (if (== 0 (ep/event-count timeline))
+    (if (== 0 (count timeline))
       nil
       (ep/event-time timeline 0)))) 
 
 (defn end
   "Returns the time of the last event in the timeline, or nil if there are no events."
   ([timeline]
-    (let [n (ep/event-count timeline)]
+    (let [n (count timeline)]
       (if (== 0 n)
         nil
         (ep/event-time timeline (dec n)))))) 
-
-(defn event-count 
-  "Counts the total number of events in a timeline."
- ([tl] (ep/event-count tl)))
 
 (defn log
   "Adds value to a timeline. If time is omitted, uses the current system time."
@@ -111,7 +107,7 @@
   ([timeline start]
     (let [start (long-time start)
           si (inc (or (ep/seek-index timeline (dec start)) -1))
-          ei (ep/event-count timeline)]
+          ei (count timeline)]
       (ep/slice-indexes timeline si ei)))
   ([timeline start end]
     (let [start (long-time start)
