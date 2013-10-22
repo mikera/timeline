@@ -7,7 +7,15 @@ A timeline is a chronologically tagged sequence of values, stored as an immutabl
 
 ### Motivation
 
-Often it is helpful to see how values change over time.
+Often it is helpful to see how values change over time. A timeline is an immutable value that itself, but 
+represents a progression of values over time (which can also be seen as events).
+
+Intended use cases are:
+
+ - Fast in-memory querying / manipulation of time based data
+ - Sensor / M2M data storage
+ - Logging with timestamps
+ - Recording a "history" of transactions or other values
 
 ### Features:
 
