@@ -9,7 +9,8 @@
     (let [t (timeline)]
      (is (nil? (seek t 0)))
      (is (nil? (seek t (+ (now) 1000))))
-     (is (== 0 (event-count t)))))
+     (is (== 0 (event-count t)))
+     (is (== 0 (event-count (log-change t 0 nil))))))
   (testing "single value" 
 	  (let [t (timeline {10 :foo})]
 	    (is (nil? (at t 0)))
@@ -38,6 +39,15 @@
                  tl (log tl 10 2)
                  tl (log tl 0 3)]
              (is (= [1 3 2] (map second tl))))))
+
+(deftest test-log-changes
+  (let [tl (timeline)
+        tl (log-change tl 0 1)
+        tl (log-change tl 10 1)
+        tl (log-change tl 5 1)
+        tl (log-change tl 1 2)]
+    (is (= 2 (at tl 1)))
+    (is (= [1 2] (map second tl)))))
 
 (deftest parsing
   (testing "ISO8601 string"
