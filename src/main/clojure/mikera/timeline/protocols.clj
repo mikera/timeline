@@ -14,9 +14,16 @@
   (event-time
     [tl index]
     "Gets the time from the event on timeline at the specified index. Index must be valid")
+  
   (event-count
     [tl]
     "Returns the total number of distinct events on the timeline")
   
+  (slice-indexes
+    [tl start-index end-index]
+    "Slices a subrange of events")
+  
   (add-event 
-    [tl time value]))
+    [tl time value]
+    "Adds an event with the specific value at the given time" 
+    ))

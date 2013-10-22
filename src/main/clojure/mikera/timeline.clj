@@ -102,6 +102,20 @@
             (log tl tn (at timeline tn))
             tl))))))
 
+(defn slice 
+  "Slaices a timeline from the start time (inclusive) to the end time (exclusive)"
+  ([timeline start]
+    (let [start (long-time start)
+          si (inc (or (ep/seek-index timeline (dec start)) -1))
+          ei (ep/event-count timeline)]
+      (ep/slice-indexes timeline si ei)))
+  ([timeline start end]
+    (let [start (long-time start)
+          end (long-time end)
+          si (inc (or (ep/seek-index timeline (dec start)) -1))
+          ei (inc (or (ep/seek-index timeline (dec end)) -1))]
+      (ep/slice-indexes timeline si ei))))
+
 ;    (ep/slice tl 
 ;              (long-time start)
 ;              (long-time end))))

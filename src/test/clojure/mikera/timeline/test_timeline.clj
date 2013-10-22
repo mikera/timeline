@@ -66,6 +66,25 @@
     (is (= 10 (event-count (resample tl :interval 100))))
     (is (= 11 (event-count (resample tl :interval 100 :add-last true))))))
 
+(deftest test-slice
+  (let [tl (timeline)
+        tl (log tl 1000 1)
+        tl (log tl 1100 2)
+        tl (log tl 1500 3)
+        tl (log tl 2000 4)]
+    (is (= [3 4] (map second (slice tl 1500))))
+    (is (= [4] (map second (slice tl 1501))))
+    (is (= [2 3] (map second (slice tl 1100 2000))))
+    (is (= [2 3 4] (map second (slice tl 1100 2001))))
+    (is (= [] (map second (slice tl 1000 1000))))
+    (is (= [] (map second (slice (timeline) 1000))))
+    (is (= [] (map second (slice (timeline) -100 1000))))
+    ))
+
+(deftest regressions
+  (testing "seq"
+    (is (= [] (map second (timeline))))))
+
 (deftest parsing
   (testing "ISO8601 string"
     (is (== 0 (long-time "1970-01-01T00:00:00.0Z")))))

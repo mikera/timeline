@@ -24,7 +24,7 @@
   
   clojure.lang.Seqable
     (seq [tl]
-      (map vector (map #(Instant. (long %)) times) values))  
+      (seq (map vector (map #(Instant. (long %)) times) values)))  
   
   Object
     (toString [tl]
@@ -51,6 +51,11 @@
     
     (event-count [tl]
       (count values))
+    
+    (slice-indexes
+      [tl start-index end-index]
+      (Timeline. (fv/subvec times start-index end-index)
+                 (fv/subvec values start-index end-index)))
     
     (add-event [tl time value]
       (let [ix (inc (.seek tl time))
