@@ -9,7 +9,7 @@
 (set! *unchecked-math* true)
 
 (defn timeline 
-  "Constructs a new timeline object. events may be timestamp/value pairs or a map of timestamps to values.
+  "Constructs a new timeline object. events may be a sequence of timestamp/value pairs or a map of timestamps to values.
    Events do not need to be in sorted order."
   ([] 
     (imp/->Timeline (now) [] []))
@@ -35,6 +35,7 @@
       nil)))
 
 (defn event-count 
+  "Counts the total number of events in a timeline."
   ([tl] (ep/event-count tl)))
 
 (defn log
