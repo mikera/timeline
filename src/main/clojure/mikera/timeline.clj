@@ -52,6 +52,19 @@
           tl
           (recur (ep/add-event tl time (first vs)) (next vs)))))))
 
+(defn log-change
+  "Logs a value to a timeline if and only if the value is a change to the previous value"
+  ([tl value]
+    (log-change tl (now) value))
+  ([tl time value]
+    (let [time (long-time time)]
+      (if (= value (at tl time))
+        tl
+        (ep/add-event tl time value))))
+  ([tl time value & more-values]
+    (let [time (long-time time)]
+      (reduce #(log-change tl time %) (log-change tl time value) more-values)))) 
+
 ;    (ep/slice tl 
 ;              (long-time start)
 ;              (long-time end))))
