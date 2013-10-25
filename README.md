@@ -13,7 +13,7 @@ represents a progression of values over time (which can also be seen as events).
 Intended use cases are:
 
  - Fast in-memory querying / manipulation of time based data
- - Sensor / M2M data storage
+ - Sensor / M2M data storage and analysis
  - Logging with timestamps
  - Recording a "history" of transactions or other values
 
