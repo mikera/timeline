@@ -54,7 +54,9 @@
         (ep/event-time timeline (dec n)))))) 
 
 (defn log
-  "Adds value to a timeline. If time is omitted, uses the current system time."
+  "Adds value to a timeline. If time is omitted, uses the current system time.
+
+   Will always add a new event, even if this does not change the value."
   ([tl value]
     (log tl (now) value))
   ([tl time value]
@@ -70,7 +72,10 @@
 
 (defn log-change
   "Logs a value to a timeline if and only if the value is a change to the previous value. This has the effect of
-   collapsing identically values events into the first such event."
+   collapsing identically values events into the first such event.
+
+   This should be used if the purpose of the timeline is purely to log changes in the value, and the presence of 
+   events is otheriwise not important."
   ([tl value]
     (log-change tl (now) value))
   ([tl time value]
