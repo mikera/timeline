@@ -24,6 +24,10 @@
 	    (is (= :bar (at t 55)))
       (is (== 3 (count t))))))
 
+(deftest test-ifn
+  (let [t (timeline [[0 :a] [1 :b] [2 :c]])]
+    (is (= :b (t 1))))) 
+
 (deftest logging
   (testing "log to empty timeline"
      (let [t (timeline)

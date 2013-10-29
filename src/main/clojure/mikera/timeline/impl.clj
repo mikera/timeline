@@ -1,5 +1,5 @@
 (ns mikera.timeline.impl
-  (:use [mikera.timeline protocols])
+  (:use [mikera.timeline protocols utils])
   (:require [clojure.core.rrb-vector :as fv])
   (:import [mikera.timeline ISeekIndex])
   (:import [org.joda.time Instant DateTimeUtils]))
@@ -25,6 +25,10 @@
                   (recur (inc mi) j)
                   (recur i mi)))))))) 
   
+  clojure.lang.IFn
+    (invoke [tl time]
+      (.nth values (.seek tl (long-time time))))  
+    
   clojure.lang.Counted
     (count [tl]
       (int (count values))) 
