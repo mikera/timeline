@@ -108,7 +108,7 @@
             tl))))))
 
 (defn slice 
-  "Slices a timeline from the start time (inclusive) to the end time (exclusive)"
+  "Slices a timeline from the start time (inclusive) to the end time (exclusive)."
   ([timeline start]
     (let [start (long-time start)
           si (inc (or (ep/seek-index timeline (dec start)) -1))
