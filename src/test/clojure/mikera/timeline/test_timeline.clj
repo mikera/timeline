@@ -83,6 +83,7 @@
     (is (= [] (map second (slice tl 1000 1000))))
     (is (= [] (map second (slice (timeline) 1000))))
     (is (= [] (map second (slice (timeline) -100 1000))))
+    (is (= [2 3] (map second (slice-indexes tl 1 3)))) 
     ))
 
 (deftest regressions

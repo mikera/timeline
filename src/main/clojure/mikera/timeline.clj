@@ -121,6 +121,13 @@
           ei (inc (or (ep/seek-index timeline (dec end)) -1))]
       (ep/slice-indexes timeline si ei))))
 
+(defn slice-indexes
+  "Slices a timeline from the start index (inclusive) to the end index (exclusive)."
+  ([timeline start-index]
+    (ep/slice-indexes timeline start-index (count timeline)))
+  ([timeline start-index end-index]
+    (ep/slice-indexes timeline start-index end-index))) 
+
 ;    (ep/slice tl 
 ;              (long-time start)
 ;              (long-time end))))
