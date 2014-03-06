@@ -42,9 +42,11 @@
         [(Instant. (nth times i)) (nth values i)]
         default))
   
+    ;; TODO: Figure out if these should be Map entries?
   clojure.lang.Seqable
     (seq [tl]
-      (seq (map vector (map #(Instant. (long %)) times) values)))  
+      (seq (for [i (range (count values))]
+            (clojure.lang.MapEntry. (Instant. (long (nth times i))) (nth values i)))))  
   
   Object
     (toString [tl]

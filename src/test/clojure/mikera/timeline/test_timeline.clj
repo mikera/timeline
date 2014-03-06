@@ -88,7 +88,9 @@
 
 (deftest regressions
   (testing "seq"
-    (is (= [] (map second (timeline))))))
+    (is (= [] (map second (timeline)))))
+  (testing "vals on timeline"
+    (is (= [1 2] (vec (vals (timeline {1000 2 100 1})))))))
 
 (deftest parsing
   (testing "ISO8601 string"
