@@ -33,6 +33,8 @@ To use Timeline, you can get the latest released version from Clojars:
 
  - https://clojars.org/net.mikera/timeline
  
+ [![Clojars Project](http://clojars.org/net.mikera/timeline/latest-version.svg)](http://clojars.org/net.mikera/timeline)
+ 
 ### Examples
 
 ```clojure
