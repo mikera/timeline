@@ -29,9 +29,7 @@ Intended use cases are:
 
 ### Getting Started
 
-To use Timeline, you can get the latest released version from Clojars:
-
- - https://clojars.org/net.mikera/timeline
+To use Timeline, you can simply grab the latest released version from Clojars:
  
  [![Clojars Project](http://clojars.org/net.mikera/timeline/latest-version.svg)](http://clojars.org/net.mikera/timeline)
  
